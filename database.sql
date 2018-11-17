@@ -1,5 +1,5 @@
 drop table if exists quiz;
-
+drop table if exists highscore;
 
 create table quiz(
 id integer,
@@ -7,8 +7,18 @@ question varchar(255),
 correct_answer varchar(255),
 answer2 varchar(255),
 answer3 varchar(255),
-answer4 varchar(255)
+answer4 varchar(255),
+primary key(id)
 );
+
+create table highscore(
+name varchar(255),
+course varchar(255),
+id integer,
+mail varchar(255),
+seconds_time numeric(5,2),
+correct_answer integer,
+total_questions integer);
 
 
 
