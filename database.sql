@@ -14,7 +14,7 @@ primary key(id)
 create table highscore(
 name varchar(255),
 course varchar(255),
-id integer,
+id varchar(255),
 mail varchar(255),
 seconds_time numeric(5,2),
 correct_answer integer,

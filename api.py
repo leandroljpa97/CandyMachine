@@ -6,14 +6,12 @@ import requests
 
 
 
-def login():
-	payload = {"name":"andre","course":"xixixixixixi","id":2022,"mail":"ahahah","time":60,"correct":3,"total":3}
-	r = requests.post("http://127.0.0.1:5000/PlayerInformation", json=payload)
-	print(r.text)
 
 def results():
-	payload = {"time":900,"correct":21,"total":30,"id":2022}
-	r = requests.post("http://127.0.0.1:5000/Results", json=payload)
+	payload = {"time":800,"correct":21,"total":30,"id":103, "code":1}
+	r = requests.post("http://127.0.0.1:5000/results", json=payload)
+	payload = {"time":900,"correct":21,"total":30,"id":1001, "code":2}
+	r = requests.post("http://127.0.0.1:5000/results", json=payload)
 	print(r.text)
 
 results()
