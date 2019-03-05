@@ -82,7 +82,7 @@ def Questions():
 	global r
 	if counter ==0:
 		cur = mysql.connect().cursor()
-		cur.execute('''select * from quiz order by rand() limit '''+2)
+		cur.execute('''select * from quiz order by rand() limit 5''')
 		r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 		counter=counter+1
 	else:
@@ -97,8 +97,7 @@ def PlayerResult():
 	global rightPlayer2
 	if request.method =="POST":	
 			aux= request.get_json()
-			print(aux['time'])
-
+			print(aux['code'])
 			if int(aux['code']) == 1:
 				timePlayer1=aux['time']
 				rightPlayer1=aux['correct']
