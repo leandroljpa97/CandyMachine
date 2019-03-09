@@ -14,10 +14,10 @@ mysql = MySQL(app)
 
 mysql.init_app(app)
 
-nr_players=0
+nr_players = 0
 r= []
-waitingPlayer=0
-counter=0
+waitingPlayer = 0
+counter = 0
 winner = 0
 timePlayer1 = -1
 rightPlayer1 = -1
@@ -60,13 +60,14 @@ def getWinner():
 @app.route('/index',  methods=['POST', 'GET'] )
 def playerInformation():
 	global nr_players
+	global waitingPlayer
 	if request.method == "POST":
 		if nr_players<2:
-			nr_players=nr_players+1
-			code=nr_players
+			nr_players = nr_players+1
+			code = nr_players
 			insertPlayer(request.form.get('name'),request.form.get('course'),request.form.get('id'),request.form.get('mail'),0,0,0)
-			if nr_players==2:
-				waitingPlayer=1
+			if nr_players == 2:
+				waitingPlayer = 1
 			return jsonify(code)
 		return jsonify(0)
 	return jsonify(0)
@@ -104,7 +105,7 @@ def PlayerResult():
 			elif int(aux['code']) == 2:
 				timePlayer2= aux['time']
 				rightPlayer2=aux['correct']
-			update_results(aux['time'],aux['correct'],aux['total'],aux['id'])
+			update_results(aux['time'],aux['correct'],6,aux['id'])
 	return jsonify(0)
 
 
@@ -131,6 +132,26 @@ def StartArduino():
 	aux = winner
 	winner = 0 
 	return jsonify(aux)
+
+@app.route('/fresh', methods=['POST', 'GET'])
+def fresh():
+	global winner
+	global nr_players
+	global counter
+	global waitingPlayer
+	global timePlayer1 
+	global rightPlayer1 
+	global timePlayer2 
+	global rightPlayer2 
+	nr_players = 0
+	counter = 0
+	waitingPlayer = 0
+	timePlayer1 = -1
+	rightPlayer1 = -1
+	timePlayer2 = -1
+	rightPlayer2 = -1
+	winner = 0 
+	return jsonify(1)
 
 
 
