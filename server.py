@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flaskext.mysql import MySQL
 import json
 from flask import request
+import ast
 
 app = Flask(__name__)
 
@@ -23,11 +24,13 @@ timePlayer1 = -1
 rightPlayer1 = -1
 timePlayer2 = -1
 rightPlayer2 = -1
+idPlayer1 = -1
+idPlayer2 = -1
 
 def update_results(time,correct,total,idp):
 	conn = mysql.connect()
 	mycursor=conn.cursor()
-	mycursor.execute('''UPDATE highscore set seconds_time="%d",id=id, correct_answer="%d", total_questions="%d" where id="%d"''' %(time,correct,total,int(idp)))
+	mycursor.execute('''UPDATE highscore set seconds_time="%d",id=id, correct_answer="%d", total_questions="%d" where id="%s"''' %(time,correct,total,idp))
 	conn.commit()
 
 def insertPlayer(name,curso,nr,mail,tempo,corretas,total):
@@ -61,11 +64,17 @@ def getWinner():
 def playerInformation():
 	global nr_players
 	global waitingPlayer
+	global idPlayer2
+	global idPlayer1
 	if request.method == "POST":
 		if nr_players<2:
 			nr_players = nr_players+1
 			code = nr_players
-			insertPlayer(request.form.get('name'),request.form.get('course'),request.form.get('id'),request.form.get('mail'),0,0,0)
+			if code == 1:
+				idPlayer1 = ast.literal_eval(request.form.get('id'))
+			if code == 2:
+				idPlayer2 = ast.literal_eval(request.form.get('id'))
+			insertPlayer(request.form.get('name'),request.form.get('course'),ast.literal_eval(request.form.get('id')),request.form.get('mail'),0,0,0)
 			if nr_players == 2:
 				waitingPlayer = 1
 			return jsonify(code)
@@ -96,16 +105,19 @@ def PlayerResult():
 	global timePlayer2
 	global rightPlayer1
 	global rightPlayer2
+	global idPlayer2
+	global idPlayer1
 	if request.method =="POST":	
-			aux= request.get_json()
-			print(aux['code'])
-			if int(aux['code']) == 1:
-				timePlayer1=aux['time']
-				rightPlayer1=aux['correct']
-			elif int(aux['code']) == 2:
-				timePlayer2= aux['time']
-				rightPlayer2=aux['correct']
-			update_results(aux['time'],aux['correct'],6,aux['id'])
+			if int(ast.literal_eval(request.form.get('code'))) == 1:
+				timePlayer1=int(ast.literal_eval(request.form.get('time')))
+				print(timePlayer1)
+				rightPlayer1=int(ast.literal_eval(request.form.get('correct')))
+				update_results(int(ast.literal_eval(request.form.get('time'))),int(ast.literal_eval(request.form.get('correct'))),6,idPlayer1)
+			elif int(ast.literal_eval(request.form.get('code'))) == 2:
+				timePlayer2= int(ast.literal_eval(request.form.get('time')))
+				rightPlayer2= int(ast.literal_eval(request.form.get('correct')))
+				update_results(int(ast.literal_eval(request.form.get('time'))),int(ast.literal_eval(request.form.get('correct'))),6,idPlayer2)
+
 	return jsonify(0)
 
 
@@ -120,6 +132,8 @@ def StartArduino():
 	global rightPlayer1 
 	global timePlayer2 
 	global rightPlayer2 
+	global idPlayer1 
+	global idPlayer2
 	getWinner()
 	if winner != 0:
 		nr_players = 0
@@ -129,6 +143,8 @@ def StartArduino():
 		rightPlayer1 = -1
 		timePlayer2 = -1
 		rightPlayer2 = -1
+		idPlayer2 = -1
+		idPlayer1 = -1
 	aux = winner
 	winner = 0 
 	return jsonify(aux)
@@ -143,6 +159,9 @@ def fresh():
 	global rightPlayer1 
 	global timePlayer2 
 	global rightPlayer2 
+	global idPlayer1
+	global idPlayer2
+
 	nr_players = 0
 	counter = 0
 	waitingPlayer = 0
@@ -151,6 +170,8 @@ def fresh():
 	timePlayer2 = -1
 	rightPlayer2 = -1
 	winner = 0 
+	idPlayer2 = -1
+	idPlayer1 = -1
 	return jsonify(1)
 
 
