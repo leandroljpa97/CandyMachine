@@ -92,7 +92,7 @@ def Questions():
 	global r
 	if counter ==0:
 		cur = mysql.connect().cursor()
-		cur.execute('''select * from quiz order by rand() limit 5''')
+		cur.execute('''select * from quiz order by rand() limit 6''')
 		r = [dict((cur.description[i][0], value) for i, value in enumerate(row)) for row in cur.fetchall()]
 		counter=counter+1
 	else:
