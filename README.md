@@ -17,5 +17,7 @@ HOTSPOT com o telemovel ou com o pc, pois nao dá para apanhar a net do IST dire
   
  Se houver algum problema com os jogo em si, desligar a aplicação dos 2 telemoveis (ATENÇAO TÊM DE JOGAR 2 JOGADORES SENAO NAO DÁ), depois vir a este link (pelo computador ou telemovel, basta uma pessoa) http://hackerschool.io:8080/fresh e reiniciar as aplicações.
  
+Para dar premissão ao whatsapp é necessario ir as defenições do telemovel ->aplicações -> Acesso especial -> intalar aplicações desconhecidas, procurar o whatsapp e dar autorização.
+ 
  3) A aplicação têm de pedir a algum membro da HS que tenha, e enviavos o apk e têm de a ter instalda no telemovel.
 4) antes de começarem a jogar tem de garantir que a peça preta esta centrada
