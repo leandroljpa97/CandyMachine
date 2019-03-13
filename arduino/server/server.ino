@@ -11,8 +11,8 @@ const char* ssid = "ZON-8E40";
 const char* password = "759769fada90";  */
 
 //HOTSPOT DO MEU PC
-const char* ssid = "jlr-linux";
-const char* password = "pzabxo8T";
+const char* ssid = "CandyMachine";
+const char* password = "abcd1234";
 
 WiFiServer server(80);
 
