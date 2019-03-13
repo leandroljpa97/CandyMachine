@@ -49,13 +49,13 @@ void loop() {
 
       //se ganhar o jogador 1 roda para um lado
        if(payload.toInt()==1){
-        Servo1.write(30); // Make servo go to 0 degrees
+        Servo1.write(15); // Make servo go to 0 degrees
         delay(750);
         Servo1.write(90);
       }
       //se ganhar o jogador 2 roda para o lado contrario
       else if(payload.toInt()==2){
-        Servo1.write(150);
+        Servo1.write(165);
         delay(750);
         Servo1.write(90);
       }
