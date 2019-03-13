@@ -16,9 +16,9 @@ Comprar m%ms ou Malteasers se não houver e não os gastem logo todos PFF!
 
 3) (Opcional) Testar se o sistema está operacional, para isso carregar o código "servo.ino" para o mcu. O programa "servo.ino" é também útil caso seja necessário ajustar os valores dos ângulos do servo, desta forma é possível controlar a quantidade de doces.
 
-4) (Mais fácil) Configurar o hotspot para os seguintes parâmetros: ssid: "CandyMachine" pass: "abcd1234". Basta ligar o mcu e este automaticamente estabelece a ligação com ao hotspot.
+4) (Mais fácil) Configurar o hotspot para os seguintes parâmetros: ssid: "CandyMachine" pass: "abcd1234". Basta ligar o mcu e este automaticamente estabelece a ligação com ao hotspot. Configurar hotspot no windows10: ->Definições -> Rede e internet ->Hotspot móvel ->Editar.
 
-4) (Mais dificil) Ir ao código do arduino ("server.ino") por baixo do que diz HOST DO MEU PC e fazer o seguinte:
+  (Mais dificil) Ir ao código do arduino ("server.ino") por baixo do que diz HOST DO MEU PC e fazer o seguinte:
 HOTSPOT com o telemóvel ou com o pc, pois nao dá para apanhar a net do IST diretamente por causa das medidas de segurança. E meter no ssid = "*identificador da internet hotspot*"; e em password = "*password*";
   -> Carregam o programa para o arduino. O cabo está dentro da máquina!! ATENÇÃO: É UM NODE MCU, POR ISSO NAS CONFIGURAÇÕES DO arduinoIDE SELECIONAR O NODE MCU E INSTALAR O QUE É NECESSÁRIO. CASO NAO TENHAM:
   Como instalar a placa NodeMCU: http://www.instructables.com/id/Quick-Start-to-Nodemcu-ESP8266-on-Arduino-IDE
